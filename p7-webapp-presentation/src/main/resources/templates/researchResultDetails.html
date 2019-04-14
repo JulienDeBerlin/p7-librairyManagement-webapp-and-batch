@@ -29,47 +29,114 @@
             </div>
 
         </div>
+
+        <div>
+            <a th:href="@{/researchResult}"> <img th:src="@{/pictures/left-arrow.png}" alt="flêche retour"/>
+            <span style="color: black">retour à la liste</span>
+            </a>
+        </div>
+
     </section>
 
     <section>
 
 
         <div class="row">
-            <div id="availabilities" class="col-lg-6">
 
-                <table class="table">
+            <div id="bookDetails" class="col-lg-6">
+
+                <table class="table table-sm">
+
 
                     <thead class="thead-dark">
                     <tr>
-                        <th style="width: 30%" scope="col">Bibliothèque</th>
-                        <th style="width: 25%" scope="col">Nb exemplaires dispos</th>
+                        <th style="width: 100%" scope="col" colspan="2"> Détails</th>
                     </tr>
                     </thead>
 
                     <tbody>
                     <tr>
-                        <td>Un jardin en ville</td>
-                        <td>Jean Loukfi</td>
+                        <th>Titre</th>
+                        <td>La maison aux esprits</td>
+                    </tr>
+
+                    <tr>
+                        <th>Auteur</th>
+                        <td>Isabel Allende</td>
+                    </tr>
+
+                    <tr>
+                        <th>Éditeur</th>
+                        <td>Le livre de poche</td>
+                    </tr>
+
+                    <tr>
+                        <th>ISBN 13</th>
+                        <td>7665654543542</td>
+                    </tr>
+
+                    <tr>
+                        <th>Mots-clés</th>
+                        <td>Histoire, Chili, Dictature, Roman</td>
+                    </tr>
+
+
+                    <tr>
+                        <th>Année de publication</th>
+                        <td>2015</td>
+                    </tr>
+
+                    <tr>
+                        <th>Résumé</th>
+                        <td>Isabel Allende, née en 1942 au Chili, dut s'exiler après le coup d'Etat militaire. A
+                            Caracas, où elle s'installa alors, elle collabora à divers journaux et revues. En 1981, elle
+                            n'y tint plus et plaça une feuille blanche sur sa machine à écrire : "La Maison aux esprits
+                            a été ma façon d'essayer de sécher les larmes dont j'étais remplie, de donner corps à la
+                            douleur pour en faire ma prisonnière. Ce faisant, j'ai attribué à l'écriture le pouvoir de
+                            ressusciter les morts, de renouer avec les disparus, de reconstruire un monde perdu." Le
+                            résultat fut un best-seller mondial, bientôt suivi de quatre autres. "J'aime écrire, dit
+                            encore Isabel Allende. J'écris parce que j'en ai envie, que j'y trouve un très vif
+                            plaisir... et sans doute parce qu'aussi longtemps qu'il y aura du rire, des larmes et de
+                            l'amour, il ne me manquera pas d'histoires à raconter."
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div id="availabilities" class="col-lg-6">
+
+                <table class="table table-sm">
+
+                    <thead class="thead-dark">
+                    <tr>
+                        <th style="width: 30%" scope="col">Bibliothèque</th>
+                        <th style="width: 25%" scope="col">Total exemplaires</th>
+                        <th style="width: 25%" scope="col">dispos</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>Jean Jaures</td>
+                        <td>2</td>
+                        <td>0</td>
                     </tr>
                     <tr>
-                        <td>Un jardin en ville</td>
-                        <td>Jean Loukfi</td>
+                        <td>Quartier Sud</td>
+                        <td>2</td>
+                        <td>1</td>
                     </tr>
                     <tr>
-                        <td>Un jardin en ville</td>
-                        <td>Jean Loukfi</td>
+                        <td>J. Miro</td>
+                        <td>1</td>
+                        <td>0</td>
                     </tr>
                     </tbody>
                 </table>
 
-            </div>
-
-            <div id="bookDetails" class="col-lg-6">
-                <p> Pour ce faire, il suffit de vous créer un compte membre.
-                    C'est rapide et c'est gratuit. En tant que membre, vous pourrez également laisser des commentaires
-                    et
-                    emprunter des topos auprès d'autres membres.
-                    Alors n'hésitez pas et rejoignez la communauté High!
             </div>
 
         </div>

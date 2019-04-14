@@ -72,7 +72,7 @@
     margin-top: 5%;
 }
 
-tr:hover td{
+#researchResults tr:hover td{
     color: darkblue;
     text-decoration: underline;
 }
