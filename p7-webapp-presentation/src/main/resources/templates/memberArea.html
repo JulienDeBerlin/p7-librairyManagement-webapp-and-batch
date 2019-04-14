@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en" xml:lang="en">
+
+<head>
+    <title>RBGC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <div class="logout text-right align-bottom">JulienB logout</div>
+        <img th:src="@{/pictures/logo.jpg}" alt="logo" class="img-fluid">
+    </header>
+
+    <section>
+
+        <div id="bg-banner">
+            <p id="texteLogo">Réseau des Bibliothèques <br/> du Grand Cherbourg</p>
+
+            <div class="text-right" id="myMenu">
+                <a th:href="@{/researchForm}" class="btn btn-light" role="button">Rechercher un ouvrage</a>
+                <!--<a th:href="@{/loginForm}" class="btn btn-light" role="button">Accéder à mon compte</a>-->
+                <a href="#link" class="btn btn-light" role="button">Infos pratiques</a>
+            </div>
+        </div>
+
+    </section>
+
+    <section>
+        <!--<div>-->
+            <!--<p>Liste de vos emprûnts en cours:</p>-->
+        <!--</div>-->
+
+        <table class="table table-sm">
+
+            <thead>
+            <tr>
+                <th scope="col" colspan="5">Vos emprûnts en cours</th>
+            </tr>
+            </thead>
+
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Titre</th>
+                <th class="d-none d-sm-table-cell" scope="col">Auteur</th>
+                <th class="d-none d-sm-table-cell" scope="col">Date prêt</th>
+                <th scope="col">Expiration prêt </th>
+                <th scope="col">Prolonger</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="book: ${results}">
+                <td th:text="${book.title}">Un jardin en ville</td>
+                <td th:text="${book.authorFirstName && book.authorSurname}">Jean Loukfi</td>
+                <td class="d-none d-sm-table-cell" th:text="${book.publisher}">Glénat</td>
+                <td class="d-none d-sm-table-cell" th:text="${book.yearPublication}">2015</td>
+                <td th:text="${book.numberAvailable}">2</td>
+            </tr>
+
+            <tr>
+                <td>Un jardin en ville </td>
+                <td class="d-none d-sm-table-cell">Jean Loukfi</td>
+                <td class="d-none d-sm-table-cell" >25/03/18</td>
+                <td >12/04/18</td>
+                <td> <a href=""> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
+            </tr>
+
+            <tr>
+                <td>Un jardin en ville </td>
+                <td class="d-none d-sm-table-cell">Jean Loukfi</td>
+                <td class="d-none d-sm-table-cell" >25/03/18</td>
+                <td >12/04/18</td>
+                <td> <a href=""> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
+            </tr>
+
+            <tr>
+                <td>Un jardin en ville </td>
+                <td class="d-none d-sm-table-cell">Jean Loukfi</td>
+                <td class="d-none d-sm-table-cell" >25/03/18</td>
+                <td >12/04/18</td>
+                <td> <a href=""> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
+            </tr>
+
+            <tr>
+                <td>Un jardin en ville </td>
+                <td class="d-none d-sm-table-cell">Jean Loukfi</td>
+                <td class="d-none d-sm-table-cell" >25/03/18</td>
+                <td >12/04/18</td>
+                <td> <a href=""> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
+            </tr>
+
+            <tr>
+                <td>Un jardin en ville </td>
+                <td class="d-none d-sm-table-cell">Jean Loukfi</td>
+                <td class="d-none d-sm-table-cell" >25/03/18</td>
+                <td >12/04/18</td>
+                <td> <a href=""> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
+            </tr>
+
+
+
+            </tbody>
+        </table>
+
+
+    </section>
+
+</div>
+</body>
+
+</html>
