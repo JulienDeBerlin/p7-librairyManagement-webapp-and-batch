@@ -13,6 +13,7 @@
 <div class="container">
 
     <header>
+        <div class="logout"></div>
         <img th:src="@{/pictures/logo.jpg}" class="img-fluid">
     </header>
 
@@ -22,8 +23,8 @@
             <p id="texteLogo">Réseau des Bibliothèques <br/> du Grand Cherbourg</p>
 
             <div class="text-right" id="myMenu">
-                <a href="#link" class="btn btn-light" role="button">Rechercher un ouvrage</a>
-                <a href="#link" class="btn btn-light" role="button">Accéder à mon compte</a>
+                <a th:href="@{/researchForm}"  class="btn btn-light" role="button">Rechercher un ouvrage</a>
+                <a th:href="@{/loginForm}" class="btn btn-light" role="button">Accéder à mon compte</a>
                 <a href="#link" class="btn btn-light" role="button">Infos pratiques</a>
             </div>
 

@@ -15,6 +15,7 @@
 <div class="container">
 
     <header>
+        <div class="logout"></div>
         <img th:src="@{/pictures/logo.jpg}" class="img-fluid">
     </header>
 
@@ -30,7 +31,7 @@
             </div>
 
             <div id="loginContainer" th:if="${toBeDisplayed == 'loginForm'}">
-                <form id="loginBloc" class="text-ce" method="get" th:action="@{/researchResult}">
+                <form id="loginBloc" class="text-ce" method="get" th:action="@{/memberArea}">
 
                     <div class="form-group">
                         <label for="email">E-Mail</label>
