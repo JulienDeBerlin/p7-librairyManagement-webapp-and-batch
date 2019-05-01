@@ -12,4 +12,14 @@
     <artifactId>p7-webapp-consumer-contract</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.berthoud</groupId>
+            <artifactId>p7-webservice-app-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
+
 </project>
