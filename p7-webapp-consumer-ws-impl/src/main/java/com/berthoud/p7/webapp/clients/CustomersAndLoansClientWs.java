@@ -1,13 +1,13 @@
 package com.berthoud.p7.webapp.clients;
 
 
-import com.berthoud.p7.webserviceapp.model.entities.Book;
-import com.berthoud.p7.webserviceapp.model.entities.BookReference;
-import com.berthoud.p7.webserviceapp.model.entities.Customer;
-import com.berthoud.p7.webserviceapp.model.entities.Loan;
 import customersAndLoans.wsdl.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+import p7.webapp.model.beans.Book;
+import p7.webapp.model.beans.BookReference;
+import p7.webapp.model.beans.Customer;
+import p7.webapp.model.beans.Loan;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -25,6 +25,7 @@
         <module>p7-webapp-business</module>
         <module>p7-webapp-consumer-contract</module>
         <module>p7-webapp-consumer-ws-impl</module>
+        <module>p7-webapp-model</module>
     </modules>
 
     <dependencies>

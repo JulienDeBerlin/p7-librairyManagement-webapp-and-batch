@@ -50,11 +50,11 @@
             </div>
 
             <div id="researchContainer" th:if="${toBeDisplayed == 'researchForm'}">
-                <form id="researchBloc" class="text-ce" method="get" th:action="@{/researchResult}">
+                <form id="researchBloc" class="text-ce" method="post" th:action="@{/researchResult}">
 
                     <div class="form-group">
                         <label for="author">Auteur</label>
-                        <input type="text" name="group" class="form-control" id="author" placeholder="Balzac">
+                        <input type="text" name="author" class="form-control" id="author" placeholder="Balzac">
                     </div>
 
                     <div class="form-group">
@@ -64,17 +64,18 @@
 
 
                     <div class="form-group">
-                        <label for="tag">Mots-clés</label>
-                        <input type="text" name="tag" class="form-control" id="tag" placeholder="Architecture, Italie">
+                        <label for="tags">Mots-clés</label>
+                        <input type="text" name="tags" class="form-control" id="tags" placeholder="Architecture, Italie">
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">Bibliothèque</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option selected>Toutes</option>
-                            <option>André Malraux</option>
-                            <option>Quartiers Sud</option>
-                            <option>L'Atelier</option>
+                        <label for="librairy">Bibliothèque</label>
+                        <select class="form-control" id="librairy" name="librairy">
+                            <option value="-1" selected>Toutes</option>
+                            <option th:each="librairy: ${librairyList}"
+                                    th:value="${librairy.id}"
+                                    th:text="${librairy.name}">
+                            </option>
                         </select>
                     </div>
 

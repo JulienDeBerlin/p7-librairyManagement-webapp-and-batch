@@ -46,68 +46,13 @@
             </thead>
 
             <tbody>
-            <tr class='clickable-row' th:data-href="@{/bookDetails}" th:each="book: ${results}">
-                <td th:text="${book.title}">Un jardin en ville</td>
-                <td th:text="${book.authorFirstName && book.authorSurname}">Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell" th:text="${book.publisher}">Glénat</td>
-                <td class="d-none d-sm-table-cell" th:text="${book.yearPublication}">2015</td>
-                <td th:text="${book.numberAvailable}">2</td>
-            </tr>
 
-            <tr class='clickable-row' th:data-href="@{/bookDetails}">
-                <td>Un jardin en ville </td>
-                <td>Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell" >Glénat</td>
-                <td class="d-none d-sm-table-cell" >2015</td>
-                <td>2</td>
-            </tr>
-
-            <tr class='clickable-row' th:data-href="@{/bookDetails}">
-            <td>Lariboubou</td>
-                <td>Pean Loukfi</td>
-                <td class="d-none d-sm-table-cell" >Fayard</td>
-                <td class="d-none d-sm-table-cell">2015</td>
-                <td>2</td>
-            </tr>
-
-            <tr class='clickable-row' th:data-href="@{/bookDetails}">
-            <td>Punition</td>
-                <td>Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell">Glénat</td>
-                <td class="d-none d-sm-table-cell">2019</td>
-                <td>20</td>
-            </tr>
-
-            <tr class='clickable-row' th:data-href="@{/bookDetails}">
-            <td>Guide du routard: Cévennes</td>
-                <td>Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell">Routard</td>
-                <td class="d-none d-sm-table-cell">2015</td>
-                <td>1</td>
-            </tr>
-
-            <tr class='clickable-row' th:data-href="@{/bookDetails}">
-            <td>Peter Pan</td>
-                <td>Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell">Glénat</td>
-                <td class="d-none d-sm-table-cell">2015</td>
-                <td>2</td>
-            </tr>
-
-            <tr class='clickable-row' th:data-href="@{/bookDetails}">
-            <td>Un jour d'hiver</td>
-                <td>Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell">Glénat</td>
-                <td class="d-none d-sm-table-cell">2015</td>
-                <td>2</td>
-            </tr>
-
-            <tr class='clickable-row' th:data-href="@{/bookDetails}">
-            <td>Pourquoi?</td>
-                <td>Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell">Glénat</td>
-                <td class="d-none d-sm-table-cell">2015</td>
-                <td>2</td>
+            <tr class='clickable-row' th:data-href="@{/bookDetails}" th:each="bookReference: ${bookReferenceList}">
+                <td th:text="${bookReference.title}">Un jardin en ville</td>
+                <td th:text="${bookReference.authorFirstName + ' ' + bookReference.authorSurname}">Jean Loukfi</td>
+                <td class="d-none d-sm-table-cell" th:text="${bookReference.publisher}">Glénat</td>
+                <td class="d-none d-sm-table-cell" th:text="${bookReference.yearPublication}">2015</td>
+                <td th:text="${bookReference.amountAvailableBooks}">2</td>
             </tr>
 
             </tbody>

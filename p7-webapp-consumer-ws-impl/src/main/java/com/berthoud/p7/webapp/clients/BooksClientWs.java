@@ -1,14 +1,12 @@
 package com.berthoud.p7.webapp.clients;
 
-import books.wsdl.BookReferenceWs;
-import books.wsdl.BookRequest;
-import books.wsdl.BookResponse;
-import books.wsdl.BookWs;
-import com.berthoud.p7.webserviceapp.model.entities.Book;
-import com.berthoud.p7.webserviceapp.model.entities.BookReference;
-import com.berthoud.p7.webserviceapp.model.entities.Librairy;
+import books.wsdl.*;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+import p7.webapp.model.beans.Book;
+import p7.webapp.model.beans.BookReference;
+import p7.webapp.model.beans.Librairy;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 import static com.berthoud.p7.webapp.utils.Utils.convertXmlDateToLocal;
+
 
 public class BooksClientWs extends WebServiceGatewaySupport {
 
@@ -70,6 +69,25 @@ public class BooksClientWs extends WebServiceGatewaySupport {
 
         return bookReferenceList;
     }
+
+
+    public ListLibrairyResponse getListLibrairies() {
+        ListLibrairyRequest request = new ListLibrairyRequest();
+        return (ListLibrairyResponse) getWebServiceTemplate().marshalSendAndReceive(request);
+    }
+
+    public List<Librairy> getListLibrairiesMapped() {
+        List<Librairy> librairyList = new ArrayList<>();
+
+        List<LibrairyWs> librairyWsList = getListLibrairies().getLibrairyWs();
+        for (LibrairyWs librairyWs : librairyWsList) {
+            Librairy librairy = new Librairy();
+            BeanUtils.copyProperties(librairyWs, librairy);
+            librairyList.add(librairy);
+        }
+        return librairyList;
+    }
+
 
 }
 
