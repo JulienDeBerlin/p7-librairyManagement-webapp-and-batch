@@ -31,7 +31,7 @@
             </div>
 
             <div id="loginContainer" th:if="${toBeDisplayed == 'loginForm'}">
-                <form id="loginBloc" class="text-ce" method="get" th:action="@{/memberArea}">
+                <form id="loginBloc" class="text-ce" method="post" th:action="@{/memberArea}">
 
                     <div class="form-group">
                         <label for="email">E-Mail</label>

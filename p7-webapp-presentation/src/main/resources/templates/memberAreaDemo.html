@@ -14,7 +14,9 @@
 <div class="container">
 
     <header>
-        <div class="logout text-right align-bottom">JulienB logout</div>
+        <div class="logout text-right align-bottom" th:text="'Bienvenue ' + ${user.getFirstName()}">
+        <a th:href="" th:text="logout">logout</a>
+        </div>
         <img th:src="@{/pictures/logo.jpg}" alt="logo" class="img-fluid">
     </header>
 
@@ -33,15 +35,13 @@
     </section>
 
     <section>
-        <!--<div>-->
-            <!--<p>Liste de vos emprûnts en cours:</p>-->
-        <!--</div>-->
-
         <table class="table table-sm">
 
             <thead>
             <tr>
-                <th scope="col" colspan="5">Vos emprûnts en cours</th>
+                <th scope="col" colspan="5" >Vos emprûnts en cours &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span th:text=" ${message} ?: ''"> </span>
+                </th>
             </tr>
             </thead>
 
@@ -56,55 +56,13 @@
             </thead>
 
             <tbody>
-            <tr th:each="book: ${results}">
-                <td th:text="${book.title}">Un jardin en ville</td>
-                <td th:text="${book.authorFirstName && book.authorSurname}">Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell" th:text="${book.publisher}">Glénat</td>
-                <td class="d-none d-sm-table-cell" th:text="${book.yearPublication}">2015</td>
-                <td th:text="${book.numberAvailable}">2</td>
+            <tr th:each="loan: ${user.getLoans()}">
+                <td th:text="${loan.getBook().bookReference.title}">Un jardin en ville</td>
+                <td th:text="${loan.getBook().bookReference.authorFirstName + ' ' +  loan.getBook().bookReference.authorSurname }">Jean Loukfi</td>
+                <td class="d-none d-sm-table-cell" th:text="${loan.getDateBegin()}">25/03/19</td>
+                <td class="d-none d-sm-table-cell" th:text="${loan.getDateEnd()}">25/04/19</td>
+                <td> <a th:href="@{/extendLoan(loanId= ${loan.id})}"> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
             </tr>
-
-            <tr>
-                <td>Un jardin en ville </td>
-                <td class="d-none d-sm-table-cell">Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell" >25/03/18</td>
-                <td >12/04/18</td>
-                <td> <a href=""> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
-            </tr>
-
-            <tr>
-                <td>Un jardin en ville </td>
-                <td class="d-none d-sm-table-cell">Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell" >25/03/18</td>
-                <td >12/04/18</td>
-                <td> <a href=""> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
-            </tr>
-
-            <tr>
-                <td>Un jardin en ville </td>
-                <td class="d-none d-sm-table-cell">Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell" >25/03/18</td>
-                <td >12/04/18</td>
-                <td> <a href=""> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
-            </tr>
-
-            <tr>
-                <td>Un jardin en ville </td>
-                <td class="d-none d-sm-table-cell">Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell" >25/03/18</td>
-                <td >12/04/18</td>
-                <td> <a href=""> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
-            </tr>
-
-            <tr>
-                <td>Un jardin en ville </td>
-                <td class="d-none d-sm-table-cell">Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell" >25/03/18</td>
-                <td >12/04/18</td>
-                <td> <a href=""> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
-            </tr>
-
-
 
             </tbody>
         </table>
