@@ -47,7 +47,7 @@
 
             <tbody>
 
-            <tr class='clickable-row' th:data-href="@{/bookDetails}" th:each="bookReference: ${bookReferenceList}">
+            <tr th:each="bookReference: ${bookReferenceList}" class='clickable-row' th:data-href="@{/bookDetails(bookRef = ${bookReference.id})}">
                 <td th:text="${bookReference.title}">Un jardin en ville</td>
                 <td th:text="${bookReference.authorFirstName + ' ' + bookReference.authorSurname}">Jean Loukfi</td>
                 <td class="d-none d-sm-table-cell" th:text="${bookReference.publisher}">Glénat</td>
@@ -57,6 +57,10 @@
 
             </tbody>
         </table>
+
+        <div th:if="${#lists.isEmpty(bookReferenceList)}">
+            <p style="color: red">La recherche n'a donné aucun résultat. Essayer d'élargir vos critères. </p>
+        </div>
 
 
     </section>

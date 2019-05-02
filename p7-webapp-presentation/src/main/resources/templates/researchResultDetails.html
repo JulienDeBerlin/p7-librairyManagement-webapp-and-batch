@@ -32,8 +32,8 @@
         </div>
 
         <div>
-            <a th:href="@{/researchResult}"> <img th:src="@{/pictures/left-arrow.png}" alt="flêche retour"/>
-            <span style="color: black">retour à la liste</span>
+            <a th:href="@{/backToResultOverview}"> <img th:src="@{/pictures/left-arrow.png}" alt="flêche retour"/>
+                <span style="color: black">retour à la liste</span>
             </a>
         </div>
 
@@ -55,41 +55,42 @@
                     </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody th:object="${selectedBookReference}">
                     <tr>
                         <th>Titre</th>
-                        <td>La maison aux esprits</td>
+                        <td th:text="*{title}">La maison aux esprits</td>
                     </tr>
 
                     <tr>
                         <th>Auteur</th>
-                        <td>Isabel Allende</td>
+                        <td th:text="*{authorFirstName + ' '+ authorSurname }">Isabel Allende</td>
                     </tr>
 
                     <tr>
                         <th>Éditeur</th>
-                        <td>Le livre de poche</td>
+                        <td th:text="*{publisher}">Le livre de poche</td>
                     </tr>
 
                     <tr>
                         <th>ISBN 13</th>
-                        <td>7665654543542</td>
+                        <td th:text="*{isbn13}">7665654543542</td>
                     </tr>
 
                     <tr>
                         <th>Mots-clés</th>
-                        <td>Histoire, Chili, Dictature, Roman</td>
+                        <td th:text="*{tagsAsString}">Histoire, Chili, Dictature, Roman</td>
                     </tr>
 
 
                     <tr>
                         <th>Année de publication</th>
-                        <td>2015</td>
+                        <td th:text="${selectedBookReference.yearPublication}">2015</td>
                     </tr>
 
                     <tr>
                         <th>Résumé</th>
-                        <td>Isabel Allende, née en 1942 au Chili, dut s'exiler après le coup d'Etat militaire. A
+                        <td th:text="${selectedBookReference.summary}">Isabel Allende, née en 1942 au Chili, dut
+                            s'exiler après le coup d'Etat militaire. A
                             Caracas, où elle s'installa alors, elle collabora à divers journaux et revues. En 1981, elle
                             n'y tint plus et plaça une feuille blanche sur sa machine à écrire : "La Maison aux esprits
                             a été ma façon d'essayer de sécher les larmes dont j'étais remplie, de donner corps à la
@@ -120,21 +121,12 @@
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td>Jean Jaures</td>
-                        <td>2</td>
-                        <td>0</td>
+                    <tr th:each="item: ${selectedBookReference.availabilities}">
+                        <td th:text="${item.librairyName}">Jean Jaures</td>
+                        <td th:text="${item.amountBooks}">2</td>
+                        <td th:text="${item.amountAvailableBooks}">2</td>
                     </tr>
-                    <tr>
-                        <td>Quartier Sud</td>
-                        <td>2</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>J. Miro</td>
-                        <td>1</td>
-                        <td>0</td>
-                    </tr>
+
                     </tbody>
                 </table>
 
@@ -147,7 +139,9 @@
 
 
     <footer>
-        <div class="marginBottom"></div>
+        <div class=" marginBottom
+                        ">
+        </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

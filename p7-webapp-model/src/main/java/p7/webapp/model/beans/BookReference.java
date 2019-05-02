@@ -1,5 +1,6 @@
 package p7.webapp.model.beans;
 
+import java.util.List;
 import java.util.Set;
 
 public class BookReference {
@@ -25,7 +26,11 @@ public class BookReference {
 
     private Set<Tag> tags;
 
+    private String tagsAsString;
+
     private int amountAvailableBooks;
+
+    private List<Availability> availabilities;
 
     public BookReference(String title, String authorFirstName, String authorSurname, String isbn13, String publisher,
                          String summary, String yearPublication, Set<Book> books, Set<Tag> tags, int amountAvailableBooks) {
@@ -131,5 +136,21 @@ public class BookReference {
 
     public void setAmountAvailableBooks(int amountAvailableBooks) {
         this.amountAvailableBooks = amountAvailableBooks;
+    }
+
+    public String getTagsAsString() {
+        return tagsAsString;
+    }
+
+    public void setTagsAsString(String tagsAsString) {
+        this.tagsAsString = tagsAsString;
+    }
+
+    public List<Availability> getAvailabilities() {
+        return availabilities;
+    }
+
+    public void setAvailabilities(List<Availability> availabilities) {
+        this.availabilities = availabilities;
     }
 }
