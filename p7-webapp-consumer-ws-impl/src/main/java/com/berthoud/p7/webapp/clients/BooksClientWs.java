@@ -1,7 +1,6 @@
 package com.berthoud.p7.webapp.clients;
 
 import books.wsdl.*;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import p7.webapp.model.beans.Book;
@@ -15,9 +14,21 @@ import java.util.Set;
 
 import static com.berthoud.p7.webapp.utils.Utils.convertXmlDateToLocal;
 
-
+/**
+ * This class consumes the webservices offered by the wsdl books.wsdl
+ */
 public class BooksClientWs extends WebServiceGatewaySupport {
 
+    /**
+     * This method is used to perform a book research using a webservice. There are 3 research parameters ( author, title or keywords also called tags)
+     * and 1 filter by librairy. At least 1 research parameter should be indicated otherwise an exception is thrown.
+     *
+     * @param authorSurname research parameters: surname of the author (NOT case sensitive)
+     * @param titleElement  research parameters: title or part of it (NOT case sensitive)
+     * @param tags          research parameters: list of keywords (NOT case sensitive)
+     * @param librairyId    research filter: -1 for all librairies, or librairyId to restrict the search to one librairy
+     * @return a Webservice {@link BookResponse} object
+     */
     public BookResponse researchBookReferencesWs(String titleElement, String authorSurname, List<String> tags, int librairyId) {
         BookRequest request = new BookRequest();
         request.setAuthorSurname(authorSurname);
@@ -28,6 +39,15 @@ public class BooksClientWs extends WebServiceGatewaySupport {
         return (BookResponse) getWebServiceTemplate().marshalSendAndReceive(request);
     }
 
+    /**
+     * This method is used to perform a book research using a webservice. The result is then mapped into a list of {@link BookReference} objects
+     *
+     * @param authorSurname research parameters: surname of the author (NOT case sensitive)
+     * @param titleElement  research parameters: title or part of it (NOT case sensitive)
+     * @param tags          research parameters: list of keywords (NOT case sensitive)
+     * @param librairyId    research filter: -1 for all librairies, or librairyId to restrict the search to one librairy
+     * @return a list of {@link BookReference} objects
+     */
     public List<BookReference> researchBookReferencesMapped(String titleElement, String authorSurname, List<String> tags, int librairyId) {
         BookResponse bookResponseWs = researchBookReferencesWs(titleElement, authorSurname, tags, librairyId);
 
@@ -70,12 +90,23 @@ public class BooksClientWs extends WebServiceGatewaySupport {
         return bookReferenceList;
     }
 
-
+    /**
+     * This method is used to retrieve all the available librairies through a webservice.
+     *
+     * @return a Webservice {@link ListLibrairyResponse} object
+     */
     public ListLibrairyResponse getListLibrairies() {
         ListLibrairyRequest request = new ListLibrairyRequest();
         return (ListLibrairyResponse) getWebServiceTemplate().marshalSendAndReceive(request);
     }
 
+
+    /**
+     * This method is used to retrieve all the available librairies through a webservice.
+     * The result is mapped into a List of {@link Librairy} objects.
+     *
+     * @return a list of {@link Librairy} objects.
+     */
     public List<Librairy> getListLibrairiesMapped() {
         List<Librairy> librairyList = new ArrayList<>();
 

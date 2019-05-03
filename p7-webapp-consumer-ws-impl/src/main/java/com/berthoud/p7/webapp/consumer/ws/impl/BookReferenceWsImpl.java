@@ -10,6 +10,10 @@ import p7.webapp.model.beans.BookReference;
 import java.util.List;
 
 
+/**
+ * The class is the implementation of the interface {@link BookReferenceDAO}.
+ * The implementation is made by using the webservice client class {@link BooksClientWs}
+ */
 @Repository
 public class BookReferenceWsImpl implements BookReferenceDAO {
 

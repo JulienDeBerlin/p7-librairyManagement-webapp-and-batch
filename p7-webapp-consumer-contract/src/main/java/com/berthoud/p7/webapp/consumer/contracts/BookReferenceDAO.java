@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface BookReferenceDAO {
 
+
     List<BookReference> getResultBookResearch( String authorSurname, String titleElement, List <String> tags, int librairyId);
 }

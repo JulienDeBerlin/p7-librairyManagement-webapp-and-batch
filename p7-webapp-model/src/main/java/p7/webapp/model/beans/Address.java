@@ -4,7 +4,6 @@ import java.util.Set;
 
 public class Address {
 
-
     private int id;
 
     private String additionalAddressField1;

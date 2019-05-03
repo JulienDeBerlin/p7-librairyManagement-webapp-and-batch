@@ -9,7 +9,10 @@ import p7.webapp.model.beans.Librairy;
 
 import java.util.List;
 
-
+/**
+ * The class is the implementation of the interface {@link LibrairyDAO}.
+ * The implementation is made by using the webservice client class {@link BooksClientWs}
+ */
 @Repository
 public class LibrairyWsImpl implements LibrairyDAO {
 

@@ -11,6 +11,13 @@ public class LoginManager {
     @Autowired
     CustomerDAO customerDAO;
 
+    /**
+     * This method is used for the login of a {@link Customer}.
+     *
+     * @param email    the email of the {@link Customer}
+     * @param password the password of the {@link Customer}
+     * @return If the password matches with the email, the corresponding {@link Customer} object is returned.
+     */
     public Customer loginCustomer (String email, String password){
         return customerDAO.getCustomer(email, password);
     }

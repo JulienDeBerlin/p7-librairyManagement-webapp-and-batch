@@ -6,6 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
+
+/**
+ * config class for webservice client
+ */
 @Configuration
 public class SoapClientConfig {
 

@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 import p7.webapp.model.beans.Customer;
 
 
+/**
+ * The class is the implementation of the interface {@link CustomerDAO}.
+ * The implementation is made by using the webservice client class {@link CustomersAndLoansClientWs}
+ */
 @Repository
 public class CustomerWsImpl implements CustomerDAO {
 

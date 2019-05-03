@@ -2,10 +2,10 @@ package p7.webapp.model.beans;
 
 public class Availability {
 
-    String librairyName;
-    int BookReferenceId;
-    int amountBooks;
-    int amountAvailableBooks;
+    private String librairyName;
+    private int BookReferenceId;
+    private int amountBooks;
+    private int amountAvailableBooks;
 
     public Availability(String librairyName, int bookReferenceId, int amountBooks, int amountAvailableBooks) {
         this.librairyName = librairyName;

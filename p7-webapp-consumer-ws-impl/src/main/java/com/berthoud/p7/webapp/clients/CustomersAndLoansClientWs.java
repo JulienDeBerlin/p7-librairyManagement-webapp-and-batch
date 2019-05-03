@@ -14,8 +14,20 @@ import java.util.Set;
 
 import static com.berthoud.p7.webapp.utils.Utils.convertXmlDateToLocal;
 
+
+/**
+ * This class consumes the webservices offered by the wsdl books.wsdl
+ */
 public class CustomersAndLoansClientWs extends WebServiceGatewaySupport {
 
+
+    /**
+     * This method is used to retrieve a customer, using a webservice.
+     *
+     * @param email    the email of the Customer
+     * @param password the password of the Customer
+     * @return a webservice {@link LoginCustomerRequest} object
+     */
     public LoginCustomerResponse getCustomerWs(String email, String password) {
         LoginCustomerRequest request = new LoginCustomerRequest();
         request.setEmail(email);
@@ -23,6 +35,13 @@ public class CustomersAndLoansClientWs extends WebServiceGatewaySupport {
         return (LoginCustomerResponse) getWebServiceTemplate().marshalSendAndReceive(request);
     }
 
+    /**
+     * This method retrieves a customer, using a webservice. It maps then the result into a {@link Customer} object.
+     *
+     * @param email    the email of the Customer
+     * @param password the password of the Customer
+     * @return a {@link Customer} object
+     */
     public Customer getCustomerMapped(String email, String password) {
         Customer customer = new Customer();
         CustomerWs customerWs = getCustomerWs(email, password).getCustomer();
@@ -58,7 +77,12 @@ public class CustomersAndLoansClientWs extends WebServiceGatewaySupport {
         return customer;
     }
 
-
+    /**
+     * This method is used to extend a loan using a webservice.
+     *
+     * @param loanId the id of the Loan to be extended
+     * @return a webservice {@link ExtendLoanResponse} object
+     */
     public ExtendLoanResponse extendLoanWs(int loanId) {
         ExtendLoanRequest request = new ExtendLoanRequest();
         request.setLoanId(loanId);
@@ -66,6 +90,12 @@ public class CustomersAndLoansClientWs extends WebServiceGatewaySupport {
     }
 
 
+    /**
+     * This method is used to extend a loan using a webservice. It then maps the result into a {@link Loan} object.
+     *
+     * @param loanId the id of the Loan to be extended
+     * @return a {@link Loan} object
+     */
     public int extendLoanMapped(int loanId) {
         return extendLoanWs(loanId).getResultCode();
     }
