@@ -2,7 +2,7 @@ package p7.webapp.model.beans;
 
 import java.time.LocalDate;
 
-public class Loan {
+public class Loan implements Comparable<Loan>{
 
 
     private int id;
@@ -86,5 +86,10 @@ public class Loan {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    @Override
+    public int compareTo(Loan o) {
+        return this.getDateEnd().isBefore(o.dateEnd)?-1:getDateEnd().isAfter(o.dateEnd)?1:0;
     }
 }

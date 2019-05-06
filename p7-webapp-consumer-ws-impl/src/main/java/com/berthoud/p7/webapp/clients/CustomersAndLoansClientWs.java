@@ -9,7 +9,9 @@ import p7.webapp.model.beans.BookReference;
 import p7.webapp.model.beans.Customer;
 import p7.webapp.model.beans.Loan;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static com.berthoud.p7.webapp.utils.Utils.convertXmlDateToLocal;
@@ -107,7 +109,7 @@ public class CustomersAndLoansClientWs extends WebServiceGatewaySupport {
         BeanUtils.copyProperties(customerWs, customer);
         customer.setDateExpirationMembership(convertXmlDateToLocal(customerWs.getDateExpirationMembership()));
 
-        Set<Loan> loanSet = new HashSet<>();
+        List<Loan> loanSet = new ArrayList<>();
 
         for (LoanWs loanWs : customerWs.getLoans()) {
 

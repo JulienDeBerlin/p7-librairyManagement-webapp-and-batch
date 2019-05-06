@@ -2,6 +2,7 @@
 package p7.webapp.model.beans;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 
@@ -23,9 +24,9 @@ public class Customer{
 
     private Address address;
 
-    private Set<Loan> loans;
+    private List<Loan> loans;
 
-    public Customer(String firstName, String surname, String sex, LocalDate dateExpirationMembership, String phone, String email, String password, Address address, Set<Loan> loans) {
+    public Customer(String firstName, String surname, String sex, LocalDate dateExpirationMembership, String phone, String email, String password, Address address, List<Loan> loans) {
         this.firstName = firstName;
         this.surname = surname;
         this.sex = sex;
@@ -113,11 +114,12 @@ public class Customer{
         this.address = address;
     }
 
-    public Set<Loan> getLoans() {
+    public List<Loan> getLoans() {
         return loans;
     }
 
-    public void setLoans(Set<Loan> loans) {
+    public void setLoans(List<Loan> loans) {
         this.loans = loans;
     }
+
 }
