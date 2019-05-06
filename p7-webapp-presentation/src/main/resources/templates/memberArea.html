@@ -14,9 +14,11 @@
 <div class="container">
 
     <header>
-        <div class="logout text-right align-bottom" th:text="'Bienvenue ' + ${user.getFirstName()}">
-        <a th:href="" th:text="logout">logout</a>
+        <div class="logout text-right align-bottom" th:if="${session.user != null}">
+            <span th:text="'Bienvenue ' + ${session.user.firstName} + ' /'"> </span>
+            <span> <a th:href="@{/logout}">logout</a> </span>
         </div>
+
         <img th:src="@{/pictures/logo.jpg}" alt="logo" class="img-fluid">
     </header>
 
@@ -56,12 +58,12 @@
             </thead>
 
             <tbody>
-            <tr th:each="loan: ${user.getLoans()}">
+            <tr th:each="loan: ${session.user.getLoans()}">
                 <td th:text="${loan.getBook().bookReference.title}">Un jardin en ville</td>
                 <td th:text="${loan.getBook().bookReference.authorFirstName + ' ' +  loan.getBook().bookReference.authorSurname }">Jean Loukfi</td>
                 <td class="d-none d-sm-table-cell" th:text="${loan.getDateBegin()}">25/03/19</td>
                 <td class="d-none d-sm-table-cell" th:text="${loan.getDateEnd()}">25/04/19</td>
-                <td> <a th:href="@{/extendLoan(loanId= ${loan.id})}"> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
+                <td> <a th:href="@{/extendLoan(loanId=${loan.id})}"> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
             </tr>
 
             </tbody>

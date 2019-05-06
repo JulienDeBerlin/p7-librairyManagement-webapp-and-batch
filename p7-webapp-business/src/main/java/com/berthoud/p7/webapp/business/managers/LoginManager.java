@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import p7.webapp.model.beans.Customer;
 
+
 @Service
 public class LoginManager {
 
@@ -21,6 +22,13 @@ public class LoginManager {
     public Customer loginCustomer (String email, String password){
         return customerDAO.getCustomer(email, password);
     }
+
+
+    public Customer refreshCustomer(String email){
+        return customerDAO.refreshCustomer(email);
+    }
+
+
 
 
 }

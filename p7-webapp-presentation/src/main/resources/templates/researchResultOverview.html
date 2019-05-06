@@ -13,7 +13,10 @@
 <div class="container">
 
     <header>
-        <div class="logout"></div>
+        <div class="logout text-right align-bottom" th:if="${session.user != null}">
+            <span th:text="'Bienvenue ' + ${session.user.firstName} + ' /'"> </span>
+            <span> <a th:href="@{/logout}">logout</a> </span>
+        </div>
         <img th:src="@{/pictures/logo.jpg}" class="img-fluid">
     </header>
 
@@ -23,7 +26,7 @@
             <p id="texteLogo">Réseau des Bibliothèques <br/> du Grand Cherbourg</p>
 
             <div class="text-right" id="myMenu">
-                <a th:href="@{/researchForm}"  class="btn btn-light" role="button">Rechercher un ouvrage</a>
+                <a th:href="@{/researchForm}" class="btn btn-light" role="button">Rechercher un ouvrage</a>
                 <a th:href="@{/loginForm}" class="btn btn-light" role="button">Accéder à mon compte</a>
                 <a href="#link" class="btn btn-light" role="button">Infos pratiques</a>
             </div>
@@ -47,7 +50,8 @@
 
             <tbody>
 
-            <tr th:each="bookReference: ${bookReferenceList}" class='clickable-row' th:data-href="@{/bookDetails(bookRef = ${bookReference.id})}">
+            <tr th:each="bookReference: ${bookReferenceList}" class='clickable-row'
+                th:data-href="@{/bookDetails(bookRef = ${bookReference.id})}">
                 <td th:text="${bookReference.title}">Un jardin en ville</td>
                 <td th:text="${bookReference.authorFirstName + ' ' + bookReference.authorSurname}">Jean Loukfi</td>
                 <td class="d-none d-sm-table-cell" th:text="${bookReference.publisher}">Glénat</td>
@@ -82,8 +86,8 @@
 
 
     <script>
-        jQuery(document).ready(function($) {
-            $(".clickable-row").click(function() {
+        jQuery(document).ready(function ($) {
+            $(".clickable-row").click(function () {
                 window.location = $(this).data("href");
             });
         });

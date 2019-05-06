@@ -14,7 +14,10 @@
 <div class="container">
 
     <header>
-        <div class="logout"></div>
+        <div class="logout text-right align-bottom" th:if="${session.user != null}">
+            <span th:text="'Bienvenue ' + ${session.user.firstName} + ' /'"> </span>
+            <span> <a th:href="@{/logout}">logout</a> </span>
+        </div>
         <img th:src="@{/pictures/logo.jpg}" alt="logo" class="img-fluid">
     </header>
 

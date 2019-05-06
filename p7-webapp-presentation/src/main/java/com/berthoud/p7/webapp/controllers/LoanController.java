@@ -45,7 +45,7 @@ public class LoanController {
                 message = "Vous avez atteint le nombre max. de prolongations autorisées. ";
                 break;
         }
-        user = loginManager.loginCustomer(user.getEmail(), user.getPassword());
+        user = loginManager.refreshCustomer(user.getEmail());
 
         model.addAttribute("user", user);
         model.addAttribute("message", message);
