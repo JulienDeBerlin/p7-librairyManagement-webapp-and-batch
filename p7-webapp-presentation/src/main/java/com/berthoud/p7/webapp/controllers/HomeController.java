@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import p7.webapp.model.beans.Librairy;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -25,7 +26,6 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
         return "home";
-
     }
 
     /**
@@ -43,10 +43,14 @@ public class HomeController {
      * Displays the login-form inside the home page
      */
     @RequestMapping(value = "/loginForm", method = RequestMethod.GET)
-    public String displayLoginForm(ModelMap model) {
-        model.addAttribute("toBeDisplayed", "loginForm");
-        return "home";
+    public String displayLoginForm(ModelMap model, HttpSession session) {
 
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("toBeDisplayed", "loginForm");
+            return "home";
+        } else {
+            return "memberArea";
+        }
     }
 
 

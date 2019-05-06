@@ -8,10 +8,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import p7.webapp.model.beans.Customer;
 
-@SessionAttributes(value = "user")
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
 
@@ -29,12 +29,13 @@ public class LoginController {
     @RequestMapping(value = "/memberArea", method = RequestMethod.POST)
     public String getMemberArea(ModelMap model,
                                 @RequestParam String email,
-                                @RequestParam String password) {
+                                @RequestParam String password,
+                                HttpSession session) {
 
         Customer user = new Customer();
         try {
             user = loginManager.loginCustomer(email, password);
-            model.addAttribute("user", user);
+            session.setAttribute("user", user);
         } catch (Exception e) {
 
         }
@@ -42,5 +43,15 @@ public class LoginController {
         return "memberArea";
 
     }
+
+    /**
+     * Remove user session attribute
+     */
+    @RequestMapping(value = "/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("user");
+        return "home";
+    }
+
 
 }
