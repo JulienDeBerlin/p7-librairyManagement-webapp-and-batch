@@ -15,7 +15,7 @@ import java.util.List;
  * The implementation is made by using the webservice client class {@link BooksClientWs}
  */
 @Repository
-public class BookReferenceWsImpl implements BookReferenceDAO {
+public class BookReferenceWsImpl extends AbstractWsImpl implements BookReferenceDAO {
 
     @Override
     public List<BookReference> getResultBookResearch(String authorSurname, String titleElement, List<String> tags, int librairyId) {
