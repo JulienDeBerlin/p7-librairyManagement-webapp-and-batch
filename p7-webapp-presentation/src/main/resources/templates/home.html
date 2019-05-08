@@ -33,8 +33,18 @@
                 <a href="#link" class="btn btn-light" role="button">Infos pratiques</a>
             </div>
 
+
+
             <div id="loginContainer" th:if="${toBeDisplayed == 'loginForm'}">
                 <form id="loginBloc" class="text-ce" method="post" th:action="@{/memberArea}">
+
+                    <div th:switch="${alert}">
+                        <p style="color: white" th:case="'wrong password'">Le mot de passe n'est pas correct</p>
+                        <p style="color: white" th:case="'wrong email'">Email inconnu</p>
+                        <p  style="color: white; visibility: hidden"  th:case= "*" > hidden placeholder</p>
+
+                    </div>
+
 
                     <div class="form-group">
                         <label for="email">E-Mail</label>

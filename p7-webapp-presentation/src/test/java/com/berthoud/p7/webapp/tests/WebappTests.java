@@ -11,10 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.ws.soap.SoapFaultDetailElement;
+import org.springframework.ws.soap.SoapFaultException;
+import org.springframework.ws.soap.SoapHeaderException;
+import org.springframework.ws.soap.client.SoapFaultClientException;
 import p7.webapp.model.beans.BookReference;
 import p7.webapp.model.beans.Librairy;
 
+import javax.xml.namespace.QName;
+import javax.xml.soap.DetailEntry;
+import javax.xml.soap.SOAPFault;
+import javax.xml.ws.soap.SOAPFaultException;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -35,13 +44,26 @@ public class WebappTests {
     public void testLogin() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SoapClientConfig.class);
         CustomersAndLoansClientWs client = context.getBean(CustomersAndLoansClientWs.class);
-        LoginCustomerResponse response = client.getCustomerWs("malika@yahoo.fr", "soleil");
 
-        System.out.println("Prénom = " + response.getCustomer().getFirstName() + "\n");
-        System.out.println("Nom = " + response.getCustomer().getSurname() + "\n");
-        System.out.println("Email = " + response.getCustomer().getEmail() + "\n");
+        try {
+            LoginCustomerResponse response = client.getCustomerWs("malika@yahoo.fr", "soleiel");
 
-        response.getCustomer().getLoans().forEach(loanWs -> System.out.println(loanWs.getBook().getBookReference().getTitle()));
+            System.out.println("Prénom = " + response.getCustomer().getFirstName() + "\n");
+            System.out.println("Nom = " + response.getCustomer().getSurname() + "\n");
+            System.out.println("Email = " + response.getCustomer().getEmail() + "\n");
+
+            response.getCustomer().getLoans().forEach(loanWs -> System.out.println(loanWs.getBook().getBookReference().getTitle()));
+
+        } catch (SoapFaultClientException e) {
+
+            e.getSoapFault().getFaultDetail();
+
+
+
+
+
+            System.out.println(e.getMessage());
+            }
 
     }
 
@@ -80,7 +102,7 @@ public class WebappTests {
         assertEquals(bookReferenceList10.size(), 1);
 
         List<BookReference> bookReferenceLis11 =
-                bookResearchManager.getResultBookResearch("", "Italie",  Arrays.asList("sport"), -1);
+                bookResearchManager.getResultBookResearch("", "Italie", Arrays.asList("sport"), -1);
         assertEquals(bookReferenceLis11.size(), 1);
 
         List<BookReference> bookReferenceList =
@@ -120,10 +142,6 @@ public class WebappTests {
         assertEquals(bookReferenceList9.size(), 2);
 
     }
-
-
-
-
 
 
 }

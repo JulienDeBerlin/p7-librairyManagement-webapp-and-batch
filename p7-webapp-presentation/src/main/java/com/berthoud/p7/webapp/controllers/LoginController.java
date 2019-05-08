@@ -37,7 +37,16 @@ public class LoginController {
             user = loginManager.loginCustomer(email, password);
             session.setAttribute("user", user);
         } catch (Exception e) {
-
+            String alert = new String();
+            if ( e.getMessage().contains("no user registered")){
+                alert = "wrong email";
+            }
+            if ( e.getMessage().contains("login denied")){
+                alert = "wrong password";
+            }
+            model.addAttribute("alert", alert);
+            model.addAttribute("toBeDisplayed", "loginForm");
+            return "home";
         }
 
         return "memberArea";
