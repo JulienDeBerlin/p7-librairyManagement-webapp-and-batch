@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.mail.MessagingException;
 
+
+/**
+ * This class is designed for a batch job, whose purpose is to send a reminder email to the customers with overdue books.
+ */
+
 @Controller
 public class SendReminderEmailJob {
 
@@ -19,6 +24,12 @@ public class SendReminderEmailJob {
         this.processCustomerListTask = processCustomerListTask;
     }
 
+
+    /**
+     * This method is used to launch the email-reminder-job through an url.
+     * @return a confirmation message displayed in the browser.
+     * @throws MessagingException
+     */
 
     @ResponseBody
     @RequestMapping("/sendHtmlEmail")

@@ -13,8 +13,13 @@ import java.util.List;
 
 import static com.berthoud.p7.webapp.business.utils.utils.localDateFormater;
 
+
+/**
+ * This class is dedicated to the build of the reminder email.
+ */
+
 @Component
-@PropertySource( value = "classpath:reminderEmail.properties", encoding = "UTF-8")
+@PropertySource(value = "classpath:reminderEmail.properties", encoding = "UTF-8")
 public class ReminderEmailBuilder {
 
     private Customer customer;
@@ -48,33 +53,17 @@ public class ReminderEmailBuilder {
     @Value("${level3}")
     private String delayLevel3;
 
-
-    ReminderEmailBuilder() {
-    }
-
-
+    /**
+     * This method is used to set {@link ReminderEmailBuilder#customer} and the corresponding fields
+     * ( {@link ReminderEmailBuilder#coreMessage} and {@link ReminderEmailBuilder#delayLevel}) after default initialization.
+     *
+     * @param customer the customer the reminder email should be sent to.
+     */
     public void initReminderEmailBuilder(Customer customer) {
         this.customer = customer;
         setDelayLevel(customer);
         setCoreMessage();
         Collections.sort(customer.getLoans());
-    }
-
-
-    public String buildEmailContentHtml() {
-
-        String htmlMsg;
-
-        htmlMsg = "<p> " + salutations  + " " + customer.getFirstName() + ", " + "</p>"
-                + "<p>" + coreMessage + "</p>"
-                + getHtmlFormatedLateLoans()
-                + "<p>" + greetings + "</br>" +signature+ "</p>"
-                + "</br>"
-                + "</br>"
-                + "<img src='cid:smallLogo'>"
-                + "<p>" + adresseLine1+ "</br>" +adresseLine2+"</br>" +adresseLine3+ "</p>";
-
-        return htmlMsg;
     }
 
 
@@ -112,6 +101,34 @@ public class ReminderEmailBuilder {
         }
     }
 
+
+    /**
+     * This method create a html template for the reminder email.
+     *
+     * @return a personalized html reminder email
+     */
+    public String buildEmailContentHtml() {
+
+        String htmlMsg;
+
+        htmlMsg = "<p> " + salutations + " " + customer.getFirstName() + ", " + "</p>"
+                + "<p>" + coreMessage + "</p>"
+                + getHtmlFormatedLateLoans()
+                + "<p>" + greetings + "</br>" + signature + "</p>"
+                + "</br>"
+                + "</br>"
+                + "<img src='cid:smallLogo'>"
+                + "<p>" + adresseLine1 + "</br>" + adresseLine2 + "</br>" + adresseLine3 + "</p>";
+
+        return htmlMsg;
+    }
+
+
+    /**
+     * This method is used for the creation of the part of the html reminder email with the details about the books that should be returned.
+     *
+     * @return a html fragment as String that can be integrated in the email template.
+     */
     private String getHtmlFormatedLateLoans() {
         String htmlFormatedLateLoans = "<table>\n" +
                 "  <tr>" +
@@ -128,7 +145,7 @@ public class ReminderEmailBuilder {
                     "    <td> " + l.getBook().getBookReference().getAuthorFirstName() + " " + l.getBook().getBookReference().getAuthorSurname() + "</td>\n" +
                     "    <td>" + localDateFormater(l.getDateBegin()) + "</td>" +
                     "    <td>" + localDateFormater(l.getDateEnd()) + "</td>" +
-                    "    <td>" + l.getDateEnd().until(LocalDate.now(), ChronoUnit.DAYS)+ "</td>" +
+                    "    <td>" + l.getDateEnd().until(LocalDate.now(), ChronoUnit.DAYS) + "</td>" +
                     "  </tr>";
         }
 

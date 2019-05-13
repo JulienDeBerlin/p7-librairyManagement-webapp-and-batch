@@ -13,6 +13,11 @@ import java.io.File;
 import java.util.List;
 
 
+/**
+ * This class is designed for a task, a task being part of a batch job.
+ * The task designed here is about  processing a list of {@link Customer} objects by sending each of the customer a reminder email.
+ */
+
 @Component
 public class ProcessCustomerListTask {
 
@@ -23,21 +28,21 @@ public class ProcessCustomerListTask {
     private ReminderEmailBuilder reminderEmailBuilder;
 
 
+    /**
+     * This method sends a html email to each {@link Customer} object of the input list
+     *
+     * @param customerList a list of {@link Customer} objects, all of them having late books to return.
+     * @throws MessagingException
+     */
     public void sendHtmlEmail(List<Customer> customerList) throws MessagingException {
 
         for (Customer c : customerList) {
             MimeMessage message = emailSender.createMimeMessage();
 
-//            boolean multipart = true;
-
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
             reminderEmailBuilder.initReminderEmailBuilder(c);
             String htmlMsg = reminderEmailBuilder.buildEmailContentHtml();
-
-////            message.setContent(htmlMsg, "text/html ; charset=UTF-8");
-//            message.setContent(htmlMsg, "text/html");
-
 
             helper.setTo(c.getEmail());
 
