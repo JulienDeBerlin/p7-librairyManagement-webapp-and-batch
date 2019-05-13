@@ -3,7 +3,11 @@ package com.berthoud.p7.webapp.business.managers;
 import com.berthoud.p7.webapp.consumer.contracts.LoanDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import p7.webapp.model.beans.*;
+import p7.webapp.model.beans.Customer;
+import p7.webapp.model.beans.Loan;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class LoanManager {
@@ -26,7 +30,47 @@ public class LoanManager {
      * -1 = failure (max amount of extensions reached),
      * -2 = failure (loanId not correct)
      */
-    public int extendLoan(int loanId){
+    public int extendLoan(int loanId) {
         return loanDAO.extendLoan(loanId);
     }
+
+
+    /**
+     * This method is used for the loan monitoring.
+     *
+     * @return a list of {@link Loan} objects for which the return deadline has been reached.
+     */
+    public List<Loan> getListOpenLoansLate() {
+        return loanDAO.getListOpenLoansLate();
+    }
+
+
+    /**
+     * A {@link Loan} object has among its attributes an attribute {@link Customer}, which is the person who borrowed the book.
+     * <p>
+     * This method takes as input a list of {@link Loan} objects and outputs the matching list of {@link Customer} objects,
+     * where each Customer object has as attribute the list of his loans as stated in the input list.
+     *
+     * @param loanList the reference loanlist that should be used to generate the Customer list
+     * @return a list of {@link Customer} objects
+     */
+    public List<Customer> convertLoanListIntoCustomerList(List<Loan> loanList) {
+
+        List<Customer> customers = new ArrayList<>();
+
+        for (Loan l : loanList) {
+            int index = customers.indexOf(l.getCustomer());
+            if (index != -1) {
+                Customer customerToBeUpdated = customers.get(index);
+                customerToBeUpdated.getLoans().add(l);
+            } else {
+                Customer customerToBeAdded = l.getCustomer();
+                customerToBeAdded.getLoans().add(l);
+                customers.add(customerToBeAdded);
+            }
+        }
+
+        return customers;
+    }
+
 }

@@ -61,8 +61,9 @@
             <tr th:each="loan: ${session.user.getLoans()}">
                 <td th:text="${loan.getBook().bookReference.title}">Un jardin en ville</td>
                 <td th:text="${loan.getBook().bookReference.authorFirstName + ' ' +  loan.getBook().bookReference.authorSurname }">Jean Loukfi</td>
-                <td class="d-none d-sm-table-cell" th:text="${loan.getDateBegin()}">25/03/19</td>
-                <td class="d-none d-sm-table-cell" th:text="${loan.getDateEnd()}">25/04/19</td>
+                <td class="d-none d-sm-table-cell" th:text="${#temporals.format(loan.getDateBegin(),'dd/MM/yyyy')}">25/03/19</td>
+                <td class="d-none d-sm-table-cell" th:text="${#temporals.format(loan.getDateEnd(),'dd/MM/yyyy')}">25/04/19</td>
+
                 <td> <a th:href="@{/extendLoan(loanId=${loan.id})}"> <img th:src="@{pictures/reload.png}" alt="arrow-reload"> </a></td>
             </tr>
 

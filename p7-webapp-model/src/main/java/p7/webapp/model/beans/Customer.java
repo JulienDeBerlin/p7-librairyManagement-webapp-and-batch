@@ -3,6 +3,7 @@ package p7.webapp.model.beans;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -122,4 +123,17 @@ public class Customer{
         this.loans = loans;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return id == customer.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, surname, sex, dateExpirationMembership, phone, email, password, address, loans);
+    }
 }

@@ -10,9 +10,7 @@ import p7.webapp.model.beans.Customer;
 import p7.webapp.model.beans.Loan;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static com.berthoud.p7.webapp.utils.Utils.convertXmlDateToLocal;
 
@@ -99,9 +97,44 @@ public class CustomersAndLoansClientWs extends WebServiceGatewaySupport {
 
 
     /**
+     * This method is used for the loan monitoring, using a webservice.
+     *
+     * @return a webservice {@link GetOpenLoansLateResponse} object
+     */
+    public GetOpenLoansLateResponse getOpenLoansLateResponseWs() {
+        GetOpenLoansLateRequest request = new GetOpenLoansLateRequest();
+        return (GetOpenLoansLateResponse) getWebServiceTemplate().marshalSendAndReceive(request);
+    }
+
+    /**
+     * This method is used for the loan monitoring.
+     *
+     * @return a list of {@link Loan} objects for which the return deadline has been reached.
+     */
+    public List<Loan> getOpenLoansLateResponseMapped() {
+
+        List<LoanWs> openLoansLateWs = getOpenLoansLateResponseWs().getLoans();
+        List<Loan> openLoansLate = new ArrayList<>();
+
+        for (LoanWs loanWs : openLoansLateWs) {
+            Loan loan = new Loan();
+
+            loan = loanMapping(loanWs);
+
+            Customer customer = new Customer();
+            BeanUtils.copyProperties(loanWs.getCustomerWs(), customer);
+            customer.setDateExpirationMembership(convertXmlDateToLocal(loanWs.getCustomerWs().getDateExpirationMembership()));
+            loan.setCustomer(customer);
+            openLoansLate.add(loan);
+        }
+
+        return openLoansLate;
+    }
+
+    /**
      * Mapping of a CustomerWs object into a Customer object.
      *
-     * @param customerWs
+     * @param customerWs the object to be mapped
      * @return
      */
     private Customer customerMapping(CustomerWs customerWs) {
@@ -109,32 +142,43 @@ public class CustomersAndLoansClientWs extends WebServiceGatewaySupport {
         BeanUtils.copyProperties(customerWs, customer);
         customer.setDateExpirationMembership(convertXmlDateToLocal(customerWs.getDateExpirationMembership()));
 
-        List<Loan> loanSet = new ArrayList<>();
+        List<Loan> loanList = new ArrayList<>();
 
         for (LoanWs loanWs : customerWs.getLoans()) {
-
-            Loan loan = new Loan();
-            BeanUtils.copyProperties(loanWs, loan);
-            loan.setDateBegin(convertXmlDateToLocal(loanWs.getDateBegin()));
-            loan.setDateEnd(convertXmlDateToLocal(loanWs.getDateEnd()));
-            loan.setDateBack(convertXmlDateToLocal(loanWs.getDateBack()));
-
-            Book book = new Book();
-            BookWs bookWs = loanWs.getBook();
-
-            BeanUtils.copyProperties(bookWs, book);
-
-            BookReference bookReference = new BookReference();
-            BeanUtils.copyProperties(bookWs.getBookReference(), bookReference);
-
-            book.setBookReference(bookReference);
-            loan.setBook(book);
-            loanSet.add(loan);
+            loanList.add(loanMapping(loanWs));
         }
 
-        customer.setLoans(loanSet);
+        customer.setLoans(loanList);
 
         return customer;
+    }
+
+
+    /**
+     * Mapping of a LoanWs object into a Loan object.
+     *
+     * @param loanWs the object to be mapped
+     * @return
+     */
+    private Loan loanMapping(LoanWs loanWs) {
+        Loan loan = new Loan();
+        BeanUtils.copyProperties(loanWs, loan);
+        loan.setDateBegin(convertXmlDateToLocal(loanWs.getDateBegin()));
+        loan.setDateEnd(convertXmlDateToLocal(loanWs.getDateEnd()));
+        loan.setDateBack(convertXmlDateToLocal(loanWs.getDateBack()));
+
+        Book book = new Book();
+        BookWs bookWs = loanWs.getBook();
+
+        BeanUtils.copyProperties(bookWs, book);
+
+        BookReference bookReference = new BookReference();
+        BeanUtils.copyProperties(bookWs.getBookReference(), bookReference);
+
+        book.setBookReference(bookReference);
+        loan.setBook(book);
+
+        return loan;
     }
 
 }

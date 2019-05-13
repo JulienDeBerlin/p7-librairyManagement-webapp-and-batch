@@ -11,19 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.ws.soap.SoapFaultDetailElement;
-import org.springframework.ws.soap.SoapFaultException;
-import org.springframework.ws.soap.SoapHeaderException;
+
 import org.springframework.ws.soap.client.SoapFaultClientException;
 import p7.webapp.model.beans.BookReference;
 import p7.webapp.model.beans.Librairy;
 
-import javax.xml.namespace.QName;
-import javax.xml.soap.DetailEntry;
-import javax.xml.soap.SOAPFault;
-import javax.xml.ws.soap.SOAPFaultException;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;

@@ -9,6 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+
     <groupId>com.berthoud</groupId>
     <artifactId>p7-webapp-app</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -26,17 +27,16 @@
         <module>p7-webapp-consumer-contract</module>
         <module>p7-webapp-consumer-ws-impl</module>
         <module>p7-webapp-model</module>
+        <module>p7-batch</module>
     </modules>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-security</artifactId>-->
-        <!--</dependency>-->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
@@ -47,6 +47,7 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
