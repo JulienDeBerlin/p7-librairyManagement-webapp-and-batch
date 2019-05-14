@@ -37,7 +37,7 @@ public class P7BatchApplicationTests {
     @Test
     public void conversionLoanListIntoCustomerList() {
         List<Customer> customerList = loanManager.convertLoanListIntoCustomerList(loanManager.getListOpenLoansLate());
-        assertEquals(customerList.size(), 3);
+        assertEquals(customerList.size(), 2);
 
     }
 

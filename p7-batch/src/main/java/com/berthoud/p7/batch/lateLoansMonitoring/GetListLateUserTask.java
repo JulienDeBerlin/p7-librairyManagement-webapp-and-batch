@@ -8,15 +8,24 @@ import p7.webapp.model.beans.Loan;
 
 import java.util.List;
 
+
+/**
+ * This class is designed for a task, a task being part of a batch job.
+ * The task designed here is about retrieving a list of {@link Customer} objects, who should receive a reminder email.
+ */
+
 @Component
 public class GetListLateUserTask {
 
     @Autowired
     LoanManager loanManager;
 
+    /**
+     * @return this method retrieves a list of {@link Customer} objects, who should receive a reminder email.
+     */
     public List<Customer> getListLateUserTask() {
 
-        List <Loan> loanLateList = loanManager.getListOpenLoansLate();
+        List<Loan> loanLateList = loanManager.getListOpenLoansLate();
         List<Customer> customerLateList = loanManager.convertLoanListIntoCustomerList(loanLateList);
 
         return customerLateList;
