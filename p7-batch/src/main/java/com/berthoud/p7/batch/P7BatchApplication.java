@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.berthoud.p7"})
 
-public class P7BatchApplication {
+public class P7BatchApplication implements CommandLineRunner{
 
     SendReminderEmailJob sendReminderEmailJob;
 
@@ -20,15 +20,15 @@ public class P7BatchApplication {
         this.sendReminderEmailJob = sendReminderEmailJob;
     }
 
-//    @Override
-//    public void run(String... args) throws Exception {
-//        sendReminderEmailJob.launchJob();
-//    }
 
     public static void main(String[] args) {
         SpringApplication.run(P7BatchApplication.class, args);
 
+    }
 
+    @Override
+    public void run(String... args) throws Exception {
+        sendReminderEmailJob.launchJob();
     }
 
 

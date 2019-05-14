@@ -1,6 +1,7 @@
 package com.berthoud.p7.batch.lateLoansMonitoring;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,7 +13,8 @@ import javax.mail.MessagingException;
  * This class is designed for a batch job, whose purpose is to send a reminder email to the customers with overdue books.
  */
 
-@Controller
+//@Controller
+    @Component
 public class SendReminderEmailJob {
 
     private GetListLateUserTask getListLateUserTask;
@@ -31,11 +33,19 @@ public class SendReminderEmailJob {
      * @throws MessagingException
      */
 
-    @ResponseBody
-    @RequestMapping("/sendHtmlEmail")
-    public String launchJob() throws MessagingException {
+//    @ResponseBody
+//    @RequestMapping("/sendHtmlEmail")
+//    public String launchJob() throws MessagingException {
+//        processCustomerListTask.sendHtmlEmail(getListLateUserTask.getListLateUserTask());
+//        return "Reminder emails sent!";
+//    }
+
+//    @ResponseBody
+//    @RequestMapping("/sendHtmlEmail")
+    public void launchJob() throws MessagingException {
         processCustomerListTask.sendHtmlEmail(getListLateUserTask.getListLateUserTask());
-        return "Reminder emails sent!";
     }
+
+
 
 }
