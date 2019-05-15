@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo launch the sending of the reminder emails with the default setting. If you made changes in the properties file, you should launch the batch using the command line!
+
+/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/jre/bin/java -jar /Users/admin/Documents/PROGRAMMING/OPENCLASSROOMS/P7/Apps_P7/Webapp/p7-batch/target/p7-batch-1.0-SNAPSHOT.jar

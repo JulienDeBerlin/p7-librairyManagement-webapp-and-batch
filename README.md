@@ -106,6 +106,8 @@ You can do that easly by using this [converting tool](https://www.mobilefish.com
 Admins-MBP:~ admin$ /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/jre/bin/java -jar /Users/admin/Documents/PROGRAMMING/OPENCLASSROOMS/P7/Apps_P7/Webapp/p7-batch/target/p7-batch-1.0-SNAPSHOT.jar --spring.config.location=file:///Users/admin/Documents/PROGRAMMING/OPENCLASSROOMS/P7/Apps_P7/Webapp/p7-batch/target/classes/messages.properties
 ```
 
+Of course you can create a small bash script as the example in the repo. 
+
 6/ That's it!
 
 
