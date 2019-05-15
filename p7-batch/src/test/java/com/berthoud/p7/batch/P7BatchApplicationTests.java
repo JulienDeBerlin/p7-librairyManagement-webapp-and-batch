@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-@PropertySource("classpath:reminderEmail.properties")
+@PropertySource("classpath:messages.properties")
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class P7BatchApplicationTests {

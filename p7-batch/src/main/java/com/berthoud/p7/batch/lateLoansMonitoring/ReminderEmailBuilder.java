@@ -2,6 +2,7 @@ package com.berthoud.p7.batch.lateLoansMonitoring;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.stereotype.Component;
 import p7.webapp.model.beans.Customer;
 import p7.webapp.model.beans.Loan;
@@ -19,7 +20,11 @@ import static com.berthoud.p7.webapp.business.utils.utils.localDateFormater;
  */
 
 @Component
-@PropertySource(value = "classpath:reminderEmail.properties", encoding = "UTF-8")
+@PropertySources({
+        @PropertySource(value = "classpath:messages.properties", encoding = "UTF-8"),
+        @PropertySource(value = "classpath:application.properties", encoding = "UTF-8")
+})
+
 public class ReminderEmailBuilder {
 
     private Customer customer;
