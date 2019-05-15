@@ -90,7 +90,7 @@ you can access the webapp on following url: http://localhost:8081/p7/
 A runnable jar will be created in the target folder of the module "p7-batch". 
 
 3/ in the same target folder, in the subfolder classes, you will find 2 properties files: 
-* application.properties where you can set up among other things the 3 reminder levels 
+* application.properties where you can set up among other things the 3 reminder levels or the email address used to send the reminder emails
 * messages.properties where you can set up the emails content.
 You can override all these values as you wish. 
 
