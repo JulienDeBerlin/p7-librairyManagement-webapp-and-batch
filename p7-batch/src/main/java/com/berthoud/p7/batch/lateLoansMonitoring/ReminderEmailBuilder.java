@@ -12,7 +12,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
 
-import static com.berthoud.p7.webapp.business.utils.utils.localDateFormater;
+import static com.berthoud.p7.webapp.business.utils.Utils.localDateFormater;
 
 
 /**
@@ -159,5 +159,7 @@ public class ReminderEmailBuilder {
         return htmlFormatedLateLoans;
     }
 
-
+    public int getDelayLevel() {
+        return delayLevel;
+    }
 }

@@ -1,6 +1,7 @@
 package com.berthoud.p7.webapp.controllers;
 
 
+import com.berthoud.p7.webapp.WebApp;
 import com.berthoud.p7.webapp.business.managers.LoginManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,17 +33,29 @@ public class LoginController {
                                 @RequestParam String password,
                                 HttpSession session) {
 
+        WebApp.logger.trace("entering 'getMemberArea()");
+
+        WebApp.logger.info("Email entered by user =" + email);
+
+
         Customer user = new Customer();
         try {
             user = loginManager.loginCustomer(email, password);
             session.setAttribute("user", user);
+            WebApp.logger.info("login successfull");
+
+
         } catch (Exception e) {
             String alert = new String();
             if ( e.getMessage().contains("no user registered")){
                 alert = "wrong email";
+                WebApp.logger.info("login failure: wrong email");
+
             }
             if ( e.getMessage().contains("login denied")){
                 alert = "wrong password";
+                WebApp.logger.info("login failure: wrong password");
+
             }
             model.addAttribute("alert", alert);
             model.addAttribute("toBeDisplayed", "loginForm");
@@ -58,7 +71,10 @@ public class LoginController {
      */
     @RequestMapping(value = "/logout")
     public String logout(HttpSession session) {
+        WebApp.logger.trace("entering 'logout()");
         session.removeAttribute("user");
+
+        WebApp.logger.trace("log out completed");
         return "home";
     }
 

@@ -1,5 +1,6 @@
 package com.berthoud.p7.webapp.controllers;
 
+import com.berthoud.p7.webapp.WebApp;
 import com.berthoud.p7.webapp.business.managers.LoanManager;
 import com.berthoud.p7.webapp.business.managers.LoginManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,18 +32,26 @@ public class LoanController {
     public String extendLoan(ModelMap model,
                              @RequestParam int loanId,
                              @SessionAttribute(value = "user") Customer user) {
+        WebApp.logger.trace("entering 'extendLoan()");
+
         int resultExtension = loanManager.extendLoan(loanId);
         String message = new String();
 
         switch (resultExtension) {
             case 1:
                 message = "Le prêt a été prolongé";
+                WebApp.logger.info("loan extension successfull");
+
                 break;
             case 0:
                 message = "Prolongation impossible, veuillez renouveler votre carte de membre.";
+                WebApp.logger.info("failure loan extension / cause: membership expired");
+
                 break;
             case -1:
                 message = "Vous avez atteint le nombre max. de prolongations autorisées. ";
+                WebApp.logger.info("failure loan extension / cause: max amount of extensions reached");
+
                 break;
         }
         user = loginManager.refreshCustomer(user.getEmail());

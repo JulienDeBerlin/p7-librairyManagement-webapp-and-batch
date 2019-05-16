@@ -1,5 +1,8 @@
 package com.berthoud.p7.batch.lateLoansMonitoring;
 
+import com.berthoud.p7.batch.P7BatchApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,6 +13,8 @@ import p7.webapp.model.beans.Customer;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -27,6 +32,8 @@ public class ProcessCustomerListTask {
     @Autowired
     private ReminderEmailBuilder reminderEmailBuilder;
 
+    public static Logger loggerEmail = LoggerFactory.getLogger(ProcessCustomerListTask.class);
+
 
     /**
      * This method sends a html email to each {@link Customer} object of the input list
@@ -35,6 +42,14 @@ public class ProcessCustomerListTask {
      * @throws MessagingException
      */
     public void sendHtmlEmail(List<Customer> customerList) throws MessagingException {
+        P7BatchApplication.logger.trace("Enter sendHtmlEmail(), Task 'ProcessCustomerList' is starting");
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date timeStamp = new Date();
+        String dateString = simpleDateFormat.format(timeStamp);
+
+
+        loggerEmail.info("Liste des emails de relance envoyés le " + dateString + ":");
 
         for (Customer c : customerList) {
             MimeMessage message = emailSender.createMimeMessage();
@@ -55,7 +70,12 @@ public class ProcessCustomerListTask {
 
             this.emailSender.send(message);
 
+            loggerEmail.info(c.getSurname() + " " + c.getFirstName() + " /// ID-usager:" + c.getId()  +" /// niveau de rappel: " + reminderEmailBuilder.getDelayLevel());
+
         }
+
+        loggerEmail.info("Fin de l'envoi \n\n\n");
+
     }
 
 }

@@ -1,5 +1,6 @@
 package com.berthoud.p7.webapp.controllers;
 
+import com.berthoud.p7.webapp.WebApp;
 import com.berthoud.p7.webapp.business.managers.BookResearchManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
+        WebApp.logger.trace("entering 'home()");
         return "home";
     }
 
@@ -33,6 +35,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/researchForm", method = RequestMethod.GET)
     public String displayResearchForm(ModelMap model) {
+        WebApp.logger.trace("entering 'displayResearchForm()");
         model.addAttribute("toBeDisplayed", "researchForm");
         List<Librairy> librairyList = bookResearchManager.getAllLibrairies();
         model.addAttribute(librairyList);
@@ -44,6 +47,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/loginForm", method = RequestMethod.GET)
     public String displayLoginForm(ModelMap model, HttpSession session) {
+        WebApp.logger.trace("entering 'displayLoginForm()");
 
         if (session.getAttribute("user") == null) {
             model.addAttribute("toBeDisplayed", "loginForm");

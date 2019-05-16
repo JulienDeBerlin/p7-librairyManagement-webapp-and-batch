@@ -1,5 +1,6 @@
 package com.berthoud.p7.batch.lateLoansMonitoring;
 
+import com.berthoud.p7.batch.P7BatchApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -43,6 +44,7 @@ public class SendReminderEmailJob {
 //    @ResponseBody
 //    @RequestMapping("/sendHtmlEmail")
     public void launchJob() throws MessagingException {
+        P7BatchApplication.logger.trace("Enter launchJob(), Job 'SendReminderEmail' is starting");
         processCustomerListTask.sendHtmlEmail(getListLateUserTask.getListLateUserTask());
     }
 

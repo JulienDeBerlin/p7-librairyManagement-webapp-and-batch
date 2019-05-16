@@ -1,5 +1,6 @@
 package com.berthoud.p7.webapp.business.managers;
 
+import com.berthoud.p7.webapp.business.utils.Utils;
 import com.berthoud.p7.webapp.consumer.contracts.LoanDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,8 @@ public class LoanManager {
      * -2 = failure (loanId not correct)
      */
     public int extendLoan(int loanId) {
+        Utils.loggerWebappBusiness.trace("entering 'extendLoan()");
+
         return loanDAO.extendLoan(loanId);
     }
 
@@ -41,6 +44,8 @@ public class LoanManager {
      * @return a list of {@link Loan} objects for which the return deadline has been reached.
      */
     public List<Loan> getListOpenLoansLate() {
+        Utils.loggerWebappBusiness.trace("entering 'getListOpenLoansLate()");
+
         return loanDAO.getListOpenLoansLate();
     }
 
@@ -55,6 +60,8 @@ public class LoanManager {
      * @return a list of {@link Customer} objects
      */
     public List<Customer> convertLoanListIntoCustomerList(List<Loan> loanList) {
+        Utils.loggerWebappBusiness.trace("entering 'convertLoanListIntoCustomerList()");
+
 
         List<Customer> customers = new ArrayList<>();
 
