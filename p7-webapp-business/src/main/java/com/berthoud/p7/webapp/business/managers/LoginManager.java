@@ -26,7 +26,7 @@ public class LoginManager {
      * @return If the password matches with the email, the corresponding {@link Customer} object is returned.
      */
     public Customer loginCustomer (String email, String password){
-        Utils.loggerWebappBusiness.trace("entering 'loginCustomer()");
+        Utils.loggerWebappBusiness.trace("entering method loginCustomer with param email = " + email );
 
         Customer customer = customerDAO.getCustomer(email, password);
         List<Loan> loans= customer.getLoans();
@@ -38,7 +38,7 @@ public class LoginManager {
 
 
     public Customer refreshCustomer(String email){
-        Utils.loggerWebappBusiness.trace("entering 'refreshCustomer()");
+        Utils.loggerWebappBusiness.trace("entering method refreshCustomer with param email = " + email);
 
         Customer customer = customerDAO.refreshCustomer(email);
         List<Loan> loans= customer.getLoans();

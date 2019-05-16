@@ -32,7 +32,7 @@ public class LoanManager {
      * -2 = failure (loanId not correct)
      */
     public int extendLoan(int loanId) {
-        Utils.loggerWebappBusiness.trace("entering 'extendLoan()");
+        Utils.loggerWebappBusiness.trace("entering method extendLoan with loanId = " + loanId);
 
         return loanDAO.extendLoan(loanId);
     }
@@ -44,7 +44,7 @@ public class LoanManager {
      * @return a list of {@link Loan} objects for which the return deadline has been reached.
      */
     public List<Loan> getListOpenLoansLate() {
-        Utils.loggerWebappBusiness.trace("entering 'getListOpenLoansLate()");
+        Utils.loggerWebappBusiness.trace("entering getListOpenLoansLate()");
 
         return loanDAO.getListOpenLoansLate();
     }
@@ -60,7 +60,7 @@ public class LoanManager {
      * @return a list of {@link Customer} objects
      */
     public List<Customer> convertLoanListIntoCustomerList(List<Loan> loanList) {
-        Utils.loggerWebappBusiness.trace("entering 'convertLoanListIntoCustomerList()");
+        Utils.loggerWebappBusiness.trace("entering method convertLoanListIntoCustomerList");
 
 
         List<Customer> customers = new ArrayList<>();

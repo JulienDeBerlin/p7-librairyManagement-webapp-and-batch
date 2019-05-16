@@ -23,7 +23,7 @@ public class BookResearchManager {
      * @return The method retrieves all librairies available.
      */
     public List<Librairy> getAllLibrairies() {
-        Utils.loggerWebappBusiness.trace("entering 'getAllLibrairies()");
+        Utils.loggerWebappBusiness.trace("entering getAllLibrairies()");
 
         return librairyDAO.findAllLibrairy();
     }
@@ -35,7 +35,7 @@ public class BookResearchManager {
      * @return a list of String, where each string is the name of the tag.
      */
     public List<String> convertTagsIntoList(String tagsAsString) {
-        Utils.loggerWebappBusiness.trace("entering 'convertTagsIntoList()");
+        Utils.loggerWebappBusiness.trace("entering method convertTagsIntoList");
 
 
         tagsAsString = tagsAsString.toLowerCase();
@@ -59,7 +59,7 @@ public class BookResearchManager {
      * @return A string made of one or many tags. The tags are separated by ", " (comma + space).
      */
     public String convertTagsSetIntoString(Set<Tag> tagSet) {
-        Utils.loggerWebappBusiness.trace("entering 'convertTagsSetIntoString()");
+        Utils.loggerWebappBusiness.trace("entering method convertTagsSetIntoString");
 
 
         String tagsAsString = new String();
@@ -89,7 +89,11 @@ public class BookResearchManager {
      * @return A list of BookReference objects, matching with the research parameters and the filter
      */
     public List<BookReference> getResultBookResearch(String authorSurname, String titleElement, List<String> tags, int librairyId) {
-        Utils.loggerWebappBusiness.trace("entering 'getResultBookResearch()");
+        Utils.loggerWebappBusiness.trace("entering method getResultBookResearch with param authorSurname = " + authorSurname + " , titleElement= " +titleElement+ " , librairyId= " + librairyId);
+        for (String tag:tags) {
+        }
+        Utils.loggerWebappBusiness.trace("tag= " +tags);
+
 
         return bookReferenceDAO.getResultBookResearch(authorSurname, titleElement, tags, librairyId);
     }
@@ -101,7 +105,7 @@ public class BookResearchManager {
      * @return the list completed.
      */
     public List<BookReference> getAmountAvailableBooks(List<BookReference> inputList) {
-        Utils.loggerWebappBusiness.trace("entering 'getAmountAvailableBooks()");
+        Utils.loggerWebappBusiness.trace("entering method getAmountAvailableBooks");
 
         for (BookReference br : inputList) {
             int amountAvailableBook = 0;
@@ -124,7 +128,7 @@ public class BookResearchManager {
      * @return a {@link BookReference} object with ist attribute {@link Availability} set.
      */
     public BookReference getAvailabilitiesEachLibrairy(BookReference bookReference) {
-        Utils.loggerWebappBusiness.trace("entering 'getAvailabilitiesEachLibrairy()");
+        Utils.loggerWebappBusiness.trace("entering method getAvailabilitiesEachLibrairy with bookReference id = " + bookReference.getId());
 
 
         List<Integer> ownedBy = new ArrayList<>();
@@ -161,7 +165,7 @@ public class BookResearchManager {
      * @return the selected {@link BookReference} object
      */
     public BookReference getSelectedBookReference(int bookReferenceId, List<BookReference> bookReferenceList) {
-        Utils.loggerWebappBusiness.trace("entering 'getSelectedBookReference()");
+        Utils.loggerWebappBusiness.trace("entering method getSelectedBookReference for bookReferenceId= " + bookReferenceId);
 
         BookReference selectedBookReference = new BookReference();
 
