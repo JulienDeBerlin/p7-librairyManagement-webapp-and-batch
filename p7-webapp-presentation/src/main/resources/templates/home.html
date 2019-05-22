@@ -62,8 +62,15 @@
                 </form>
             </div>
 
+
+
             <div id="researchContainer" th:if="${toBeDisplayed == 'researchForm'}">
                 <form id="researchBloc" class="text-ce" method="post" th:action="@{/researchResult}">
+
+                    <div th:switch="${alert}">
+                        <p style="color: white" th:case="'no parameter'">Renseignez au minimum un critère de recherche!</p>
+                        <p  style="color: white; visibility: hidden"  th:case= "*" > hidden placeholder</p>
+                    </div>
 
                     <div class="form-group">
                         <label for="author">Auteur</label>

@@ -6,11 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import p7.webapp.model.beans.BookReference;
-import p7.webapp.model.beans.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @SessionAttributes(value = "bookReferenceList")
 @Controller
@@ -36,16 +34,24 @@ public class ResearchResultController {
                             @RequestParam(value = "tags") String tagsAsString,
                             @RequestParam(value = "librairy") int librairyId) {
 
-        List<String> tagList = new ArrayList<>();
-        if (!tagsAsString.isEmpty()) {
-            tagList = bookResearchManager.convertTagsIntoList(tagsAsString);
+        if (authorSurname == "" && titleElement == "" && tagsAsString == "") {
+            model.addAttribute("alert", "no parameter");
+            model.addAttribute("toBeDisplayed", "researchForm");
+            return "home";
+
+        } else {
+
+            List<String> tagList = new ArrayList<>();
+            if (!tagsAsString.isEmpty()) {
+                tagList = bookResearchManager.convertTagsIntoList(tagsAsString);
+            }
+            List<BookReference> bookReferenceList = bookResearchManager.getResultBookResearch(authorSurname, titleElement, tagList, librairyId);
+            bookReferenceList = bookResearchManager.getAmountAvailableBooks(bookReferenceList);
+
+            model.addAttribute("bookReferenceList", bookReferenceList);
+
+            return "researchResultOverview";
         }
-        List<BookReference> bookReferenceList = bookResearchManager.getResultBookResearch(authorSurname, titleElement, tagList, librairyId);
-        bookReferenceList = bookResearchManager.getAmountAvailableBooks(bookReferenceList);
-
-        model.addAttribute("bookReferenceList", bookReferenceList);
-
-        return "researchResultOverview";
     }
 
     /**

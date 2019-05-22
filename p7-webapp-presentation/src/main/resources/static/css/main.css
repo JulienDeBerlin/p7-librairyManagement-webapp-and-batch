@@ -47,11 +47,11 @@
     font-style: italic;
     margin-left: 2%;
     font-size: calc(18px + 1vw);
-
 }
 
 #myMenu{
     margin-right: 2%;
+    margin-bottom: 0px;
 }
 
 #loginBloc, #researchBloc{
@@ -68,8 +68,11 @@
 
 }
 
+
+
 #researchContainer{
     margin-top: 5%;
+    margin-top: 2%;
 }
 
 #researchResults tr:hover td{
