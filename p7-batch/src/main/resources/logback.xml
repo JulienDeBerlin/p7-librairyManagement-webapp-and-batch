@@ -16,7 +16,7 @@
 
     <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.FileAppender">
 
-        <file>${LOG_PATH}/batch_listeEmails.log</file>
+        <file>p7-batch/${LOG_PATH}/batch_listeEmails.log</file>
 
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>
