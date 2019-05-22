@@ -4,7 +4,9 @@ import com.berthoud.p7.batch.P7BatchApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -12,7 +14,6 @@ import p7.webapp.model.beans.Customer;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +34,9 @@ public class ProcessCustomerListTask {
     private ReminderEmailBuilder reminderEmailBuilder;
 
     public static Logger loggerEmail = LoggerFactory.getLogger(ProcessCustomerListTask.class);
+
+    @Value("classpath:logoSmall.jpg")
+    Resource smallLogo;
 
 
     /**
@@ -61,16 +65,22 @@ public class ProcessCustomerListTask {
 
             helper.setTo(c.getEmail());
 
-            helper.setSubject("Retour de prêts");
+            helper.setSubject("Rappel: retour d'ouvrages en retard");
 
             helper.setText(htmlMsg, true);
 
-            FileSystemResource res = new FileSystemResource(new File("/Users/admin/Documents/PROGRAMMING/OPENCLASSROOMS/P7/Apps_P7/Webapp/p7-batch/src/main/resources/logoSmall.jpg"));
-            helper.addInline("smallLogo", res);
+            // Absolute path
+//            FileSystemResource res = new FileSystemResource(new File("/Users/admin/Documents/PROGRAMMING/OPENCLASSROOMS/P7/Apps_P7/Webapp/p7-batch/src/main/resources/logoSmall.jpg"));
+
+
+            // Relative path - this method doesnt work - TBC WHY
+//            ClassPathResource res = new ClassPathResource("../../../../../../../resources/logoSmall.jpg", ProcessCustomerListTask.class);
+
+            helper.addInline("smallLogo", smallLogo);
 
             this.emailSender.send(message);
 
-            loggerEmail.info(c.getSurname() + " " + c.getFirstName() + " /// ID-usager:" + c.getId()  +" /// niveau de rappel: " + reminderEmailBuilder.getDelayLevel());
+            loggerEmail.info(c.getSurname() + " " + c.getFirstName() + " /// ID-usager:" + c.getId() + " /// niveau de rappel: " + reminderEmailBuilder.getDelayLevel());
 
         }
 
