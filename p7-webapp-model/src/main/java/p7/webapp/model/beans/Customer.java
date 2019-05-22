@@ -4,7 +4,6 @@ package p7.webapp.model.beans;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 
 public class Customer{
@@ -15,7 +14,7 @@ public class Customer{
 
     private String surname;
 
-    private String sex;
+    private char sex;
 
     private LocalDate dateExpirationMembership;
     private String phone;
@@ -27,7 +26,7 @@ public class Customer{
 
     private List<Loan> loans;
 
-    public Customer(String firstName, String surname, String sex, LocalDate dateExpirationMembership, String phone, String email, String password, Address address, List<Loan> loans) {
+    public Customer(String firstName, String surname, char sex, LocalDate dateExpirationMembership, String phone, String email, String password, Address address, List<Loan> loans) {
         this.firstName = firstName;
         this.surname = surname;
         this.sex = sex;
@@ -67,11 +66,11 @@ public class Customer{
         this.surname = surname;
     }
 
-    public String getSex() {
+    public char getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(char sex) {
         this.sex = sex;
     }
 

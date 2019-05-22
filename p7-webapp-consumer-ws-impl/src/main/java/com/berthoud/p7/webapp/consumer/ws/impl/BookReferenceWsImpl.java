@@ -19,8 +19,6 @@ public class BookReferenceWsImpl extends AbstractWsImpl implements BookReference
 
     @Override
     public List<BookReference> getResultBookResearch(String authorSurname, String titleElement, List<String> tags, int librairyId) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SoapClientConfig.class);
-        BooksClientWs client = context.getBean(BooksClientWs.class);
-        return client.researchBookReferencesMapped(titleElement, authorSurname, tags, librairyId);
+        return booksClientWs.researchBookReferencesMapped(titleElement, authorSurname, tags, librairyId);
     }
 }

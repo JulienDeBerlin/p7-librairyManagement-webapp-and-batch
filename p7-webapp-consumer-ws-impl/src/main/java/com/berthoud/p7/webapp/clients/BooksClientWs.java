@@ -6,6 +6,7 @@ import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import p7.webapp.model.beans.Book;
 import p7.webapp.model.beans.BookReference;
 import p7.webapp.model.beans.Librairy;
+import p7.webapp.model.beans.Tag;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -58,6 +59,17 @@ public class BooksClientWs extends WebServiceGatewaySupport {
             BookReference bookReference = new BookReference();
             BeanUtils.copyProperties(bookReferenceWs, bookReference);
 
+            //Mapping Set<Tag> inside BookReference
+            Set<Tag> tagSet = new HashSet<>();
+            for (TagsWs tagsWs: bookReferenceWs.getTags()){
+                Tag tag = new Tag();
+                BeanUtils.copyProperties(tagsWs, tag);
+                tagSet.add(tag);
+            }
+
+            bookReference.setTags(tagSet);
+
+            // Mapping Set<Book> inside BookReference
             Set<Book> bookSet = new HashSet<>();
             for (BookWs bookWs : bookReferenceWs.getBook()) {
                 Book book = new Book();
@@ -83,6 +95,7 @@ public class BooksClientWs extends WebServiceGatewaySupport {
 
                 bookSet.add(book);
             }
+
             bookReference.setBooks(bookSet);
             bookReferenceList.add(bookReference);
         }

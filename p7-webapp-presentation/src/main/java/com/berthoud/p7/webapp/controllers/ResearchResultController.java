@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import p7.webapp.model.beans.BookReference;
+import p7.webapp.model.beans.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @SessionAttributes(value = "bookReferenceList")
 @Controller

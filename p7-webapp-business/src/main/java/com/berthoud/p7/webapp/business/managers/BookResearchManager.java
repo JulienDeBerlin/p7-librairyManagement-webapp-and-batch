@@ -62,13 +62,13 @@ public class BookResearchManager {
         Utils.loggerWebappBusiness.trace("entering method convertTagsSetIntoString");
 
 
-        String tagsAsString = new String();
+        String tagsAsString = "";
 
         if (tagSet != null) {
             for (Tag tag : tagSet) {
-                tagsAsString = tag.getName() + ", " + tag;
+                tagsAsString += tag.getName() + " ";
             }
-            tagsAsString = tagsAsString.substring(0, tagsAsString.lastIndexOf(','));
+//            tagsAsString = tagsAsString.substring(0, tagsAsString.lastIndexOf(','));
 
         } else {
             tagsAsString = "";
