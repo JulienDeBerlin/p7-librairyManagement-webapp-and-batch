@@ -119,11 +119,11 @@ public class ReminderEmailBuilder {
         htmlMsg = "<p> " + salutations + " " + customer.getFirstName() + ", " + "</p>"
                 + "<p>" + coreMessage + "</p>"
                 + getHtmlFormatedLateLoans()
-                + "<p>" + greetings + "</br>" + signature + "</p>"
-                + "</br>"
-                + "</br>"
+                + "<p>" + greetings + "<br>" + signature + "</p>"
+                + "<br>"
+                + "<br>"
                 + "<img src='cid:smallLogo'>"
-                + "<p>" + adresseLine1 + "</br>" + adresseLine2 + "</br>" + adresseLine3 + "</p>";
+                + "<p>" + adresseLine1 + "<br>" + adresseLine2 + "<br>" + adresseLine3 + "</p>";
 
         return htmlMsg;
     }
