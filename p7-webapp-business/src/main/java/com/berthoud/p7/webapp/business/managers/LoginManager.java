@@ -49,6 +49,7 @@ public class LoginManager {
 
         Customer customer = customerDAO.refreshCustomer(email);
         List<Loan> loans = customer.getLoans();
+        removeClosedLoans(loans);
         Collections.sort(loans);
         customer.setLoans(loans);
         return customer;
